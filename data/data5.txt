@@ -1,0 +1,6 @@
+Q. Apple ID란 무엇이며 어떻게 받을 수 있습니까?
+A. 맞춤형 Apple Store에 로그인하는 데에는 비즈니스용 Apple ID가 사용됩니다. 새로운 비즈니스 Apple ID로 등록하려면 https://ecommerce.apple.com/(새 창에서 열림)으로 이동하여 'Apple ID가 없으십니까? 지금 만드세요.'를 선택합니다.
+등록 절차 중에 비즈니스용 Apple ID와 연결된 이메일 주소를 입력해야 합니다.
+이미 개인 Apple ID와 연결된 이메일 주소는 사용할 수 없습니다.
+Apple Business Manager 관리자 용도로 사용하는 비즈니스용 Apple ID가 이미 있는 경우, 별도의 Apple ID를 사용하여 온라인 스토어에서 장비를 구매하시기 바랍니다.
+Apple ID의 암호를 변경해야 하는 경우 iforgot.apple.com(새 창에서 열림)으로 이동하여 제공된 단계를 따릅니다. 비즈니스용 Apple ID와 관련한 어려움이 있는 경우 이 페이지 하단에 있는 문의하기 링크를 참조하시기 바랍니다.
