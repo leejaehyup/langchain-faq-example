@@ -12,6 +12,8 @@ import { Document } from 'langchain/document';
 import { MultiQueryRetriever } from 'langchain/retrievers/multi_query';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
+import { EmbeddingsFilter } from 'langchain/retrievers/document_compressors/embeddings_filter';
+import { ContextualCompressionRetriever } from 'langchain/retrievers/contextual_compression';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -64,12 +66,26 @@ export class FaqService implements OnModuleInit {
 
   async getFaqByQuery(question: string): Promise<string> {
     const model = new ChatOpenAI();
-    const retriever = MultiQueryRetriever.fromLLM({
+
+    const baseRetriever = MultiQueryRetriever.fromLLM({
       llm: model,
       retriever: this.vectorDB.asRetriever({ searchType: 'similarity', k: 1 }),
       // debug
       verbose: true,
     });
+
+    const embeddingsFilter = new EmbeddingsFilter({
+      embeddings: new OpenAIEmbeddings(),
+      similarityThreshold: 0.85,
+      k: 1,
+    });
+
+    const retriever = new ContextualCompressionRetriever({
+      baseCompressor: embeddingsFilter,
+      baseRetriever,
+      verbose: true,
+    });
+
     const query = question;
 
     const prompt = ChatPromptTemplate.fromMessages([
@@ -90,7 +106,7 @@ export class FaqService implements OnModuleInit {
         func: (input: string) =>
           retriever
             .invoke(input)
-            .then((response) => response[0].metadata?.answer),
+            .then((response) => response[0]?.metadata?.answer),
       }).withConfig({ runName: 'faqContextRetriever' }),
       // 입력값 전달
       question: new RunnablePassthrough(),
