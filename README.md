@@ -5,9 +5,9 @@ This project demonstrates how to build a simple FAQ (Frequently Asked Questions)
 
 ### flow
 
-1. When running the service, the FAQ data is saved in vector DB.
-   - This example uses `MemoryVectorStore`.
-2. Data with high similarity to the question is retrieved from vector DB through `MultiQueryRetriever`.
+1. When running the application, the FAQ data is saved in vector store.
+   - In this example, `MemoryVectorStore` is used as the vector store.
+2. Data with high similarity to the question is retrieved from vector store through `MultiQueryRetriever`.
 3. Results of answers are derived through prompts.
 
 `MultiQueryRetriever` was used as a retriever.
@@ -48,9 +48,9 @@ To use the bot, follow these steps:
 
 The format of data used in Retriever is diverse, such as PDF and document.
 
-Put the question and answer files in the data folder.
-
 In this example, we used a text file containing questions and answers.
+
+Put the question and answer files in the `data` folder.
 
 **Example FAQ data**
 ```
@@ -60,7 +60,10 @@ A. Apple Store는 계약에 기반하여 특별히 선별된 Apple 및 타사 �
 
 **Running the API**
 ```bash
-curl localhost:3000/faq?question={question}
+curl \
+  -X GET \
+  -d 'question=APP Store는 어떻게 동작하나요?' \
+  http://localhost:3000/faq
 ```
 
 ## License
