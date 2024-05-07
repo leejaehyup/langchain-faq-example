@@ -16,6 +16,12 @@ The `MultiQueryRetriever` automates the process of prompt tuning by using an LLM
 
 
 For this part, please refer to [MultiQueryRetriever].
+
+**Payment Caution**
+
+By using a `MemoryVectorStore`, the data in the store is restored every time the application is restarted.
+
+So you may continue to pay for text embedding every time the app restarts.
 ## Installation
 To install and run this project locally, follow these steps:
 
@@ -54,17 +60,24 @@ Put the question and answer files in the `data` folder.
 
 **Example FAQ data**
 ```
-Q. Apple Store란 무엇입니까?
-A. Apple Store는 계약에 기반하여 특별히 선별된 Apple 및 타사 제품을 구매할 수 있는 온라인 스토어입니다. 홈페이지 메뉴에 나와 있는 옵션에 표시된 대로 상태를 확인하고 제품의 반품을 요청할 수도 있습니다.
+Q. 여러 개의 계정에 접근할 수 있습니까?
+A. 하나의 로그인에 연결된 여러 개의 주문 주소를 대신하여 여러 계정에 접근할 수 있습니다.
+동일한 Apple ID를 사용하여 해당 계정들에 등록한 경우, 동일한 로그인 아래에서 여러 개의 계정에 접근할 수 있습니다.
 ```
 
-**Running the API**
+**Test Question**
+
 ```bash
 curl \
   -X GET \
-  -d 'question=APP Store는 어떻게 동작하나요?' \
+  -d 'question=내가 여러개의 계정에 접근이 가능해?' \
   http://localhost:3000/faq
 ```
+**Answer**
+```
+네, 만약 여러 개의 계정을 동일한 Apple ID로 등록했다면, 하나의 로그인으로 여러 개의 계정에 접근할 수 있습니다.
+```
+
 
 ## Copyright and license
 This project is licensed under the MIT License.

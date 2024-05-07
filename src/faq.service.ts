@@ -69,15 +69,16 @@ export class FaqService implements OnModuleInit {
 
     const baseRetriever = MultiQueryRetriever.fromLLM({
       llm: model,
-      retriever: this.vectorDB.asRetriever({ searchType: 'similarity', k: 1 }),
+      retriever: this.vectorDB.asRetriever({ searchType: 'similarity', k: 2 }),
       // debug
       verbose: true,
     });
 
+    // Create embeddings filter
     const embeddingsFilter = new EmbeddingsFilter({
       embeddings: new OpenAIEmbeddings(),
       similarityThreshold: 0.85,
-      k: 1,
+      k: 2,
     });
 
     const retriever = new ContextualCompressionRetriever({
